@@ -1,0 +1,50 @@
+This folder forms a Django backend, which acts as a separate backend.
+Using DJANGO REST framework, most of the application logic would sit at the backend.
+The frontend (whether mobile or desktop based) would query required info and render it at the client side.
+
+--HOW TO RUN THE SERVER--
+-Ensure that DJANGO and DJANGO REST framework has been installed
+-Navigate to the folder /mysite , where manage.py is located
+-In the command line, type the following: manage.py runserver
+-It should run on 127.0.0.1:8000 , however if the port differs then please change this so that you can
+access the below endpoints
+
+
+--ENDPOINTS--
+Three different endpoints have been created (development server addresses below) :
+1. http://127.0.0.1:8000/allcompounds/
+    When a frontend hits this endpoint, it will return all of the available compound id's.
+    This can be used by the frontend in dropdown menu's etc at the beginning of a user journey.
+
+    Returns HTTP response
+
+2. http://127.0.0.1:8000/compoundsinfo/?compound_id=1442549
+    When a frontend hits this endpoint, all of the assay results relating to a particular compound will
+    be returned.
+
+    By having all of the relevant info for a compound on one endpoint, it can use this to easily
+    render charts/images/display text etc using the information it requires.
+
+    The required compound id number must be passed from the frontend. (Which would likely be obtained
+    via dropdowns using the first endpoint above)
+
+    Returns JSON response
+
+3. http://127.0.0.1:8000/compoundimage/?compound_id=1442549 (not yet fully operational)
+
+    When the front hits this endpoint, it returns the image relating to the compound.
+    This could be useful for rendering charts etc. Needs edits to return byte stream
+
+    Returns HTTP response
+
+ --FRONTEND NOTES--
+ I had intended to create a full stack application, however for time reasons I have focused on the backend.
+ My intention would be to create a separate REACT frontend that would query logic on the DJANGO backend
+
+ --DATABASE--
+ As the file was small, I have worked directly with the json file.
+ I considered loading the info into a database, hence the inclusion of fixtures/ the models.py file, however it is not needed in this case.
+ However these files demonstrate how this would be done.
+
+ --ERROR HANDLING--
+ Proper error handling would need to be included in the get requests, which have not been included.
