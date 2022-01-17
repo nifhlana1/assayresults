@@ -12,3 +12,4 @@ requests
 gunicorn
 urllib3
 django-heroku
+django-import-export==2.5.0
