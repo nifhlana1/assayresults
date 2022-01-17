@@ -2,6 +2,9 @@
 from rest_framework.decorators import api_view
 from django.http import HttpResponse, JsonResponse
 from  mysite.getCompoundDetails import getCompounds, getCompoundDetails, get_image
+import os
+from django.conf import settings
+
 
 # from rest_framework.response import Response
 # from rest_framework import status
@@ -58,13 +61,15 @@ def get_compound_image(request):
     Returns http response."""
 
     if request.method == 'GET':
-        print("in get")
         compound_id = request.GET.get("compound_id")
         print(compound_id)
-        image=get_image(compound_id)
+        # Alter base bath for use with Django server
+        base_dir = settings.BASE_DIR
 
-        print(image)
+        # get associated images
+        #image=get_image(compound_id)
+        image_data = open(os.path.join(base_dir, 'mysite', 'static', 'images', str(get_image(compound_id))),"rb").read()
 
-    return HttpResponse(image, content_type="image/png")
+    return HttpResponse(image_data, content_type="image/png")
 
 

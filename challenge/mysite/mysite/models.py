@@ -1,5 +1,6 @@
 from django.db import models
 
+"""Note, database not used but below demonstrated the creation of ORM"""
 class CompoundInfo(models.Model):
     compound_id = models.CharField(primary_key=True,max_length=50)
     molecular_weight = models.CharField(max_length=100)

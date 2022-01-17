@@ -4,6 +4,8 @@ from django.conf import settings
 from pathlib import Path
 
 
+"""THE LOGIC USED BY THE VIEWS.PY FILE IS MOSTLY MANAGED HERE IN THE BELOW FUNCTIONS"""
+
 
 def getCompounds():
 
@@ -38,13 +40,12 @@ def get_image(compound_id):
     (Called automatically and served on another endpoint
     when a compound id is requested.)"""
 
-    print("in image")
     # Alter base bath for use with Django server
     base_dir = settings.BASE_DIR
 
     # get associated images
     image = os.path.join(base_dir, 'mysite', 'static', 'images', str(compound_id) + ".png")
-    #print(str(image))
+    print(image)
 
     return image
 
