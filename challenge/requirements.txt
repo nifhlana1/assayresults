@@ -1,0 +1,6 @@
+
+Django==2.2.5
+requests
+gunicorn
+urllib3
+django-heroku
